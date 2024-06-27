@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:netflix_clone/features/home/ui/home_nav_bar_widget.dart';
+import 'package:netflix_clone/core/helpers/extensions.dart';
+import 'package:netflix_clone/core/routing/routes.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -11,7 +12,6 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
-      
   late final AnimationController _controller;
 
   @override
@@ -20,9 +20,7 @@ class _SplashScreenState extends State<SplashScreen>
     _controller = AnimationController(vsync: this);
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const HomeNavBarWidget()),
-        );
+        context.pushReplacementNamed(Routes.homeNavBar);
       }
     });
   }
