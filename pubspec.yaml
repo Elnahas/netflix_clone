@@ -58,10 +58,10 @@ dependencies:
   flutter_screenutil: ^5.9.0
   # Flutter library to load and cache network images
   cached_network_image: ^3.3.1
-
-
-
+  # Lottie animation
   lottie: ^3.1.2
+  # google font
+  google_fonts: ^6.2.1
 
 
 
