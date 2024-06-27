@@ -13,22 +13,28 @@ class MyApp extends StatelessWidget {
       designSize: const Size(375, 812),
       minTextAdapt: true,
       splitScreenMode: true,
-      child: MaterialApp(
-        title: 'Netflix Clone',
-        debugShowCheckedModeBanner: false,
-        themeMode: ThemeMode.dark,
-        theme: ThemeData(
-          textTheme: const TextTheme(
-            bodyLarge: TextStyle(color: Colors.white, fontSize: 24),
-            bodyMedium: TextStyle(color: Colors.white, fontSize: 20),
+      builder: (context, child) {
+        return MaterialApp(
+          title: 'Netflix Clone',
+          debugShowCheckedModeBanner: false,
+          themeMode: ThemeMode.dark,
+          theme: ThemeData(
+            brightness: Brightness.dark,
+            textTheme: const TextTheme(
+              bodyLarge: TextStyle(color: Colors.white, fontSize: 24),
+              bodyMedium: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            colorScheme: ColorScheme.fromSeed(
+              seedColor: Colors.deepPurple,
+              brightness: Brightness.dark,  
+            ),
+            scaffoldBackgroundColor: Colors.black,
+            useMaterial3: true,
+            fontFamily: GoogleFonts.ptSans().fontFamily,
           ),
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)
-              .copyWith(surface: Colors.black),
-          useMaterial3: true,
-          fontFamily: GoogleFonts.ptSans().fontFamily,
-        ),
-        home: const SplashScreen(),
-      ),
+          home: const SplashScreen(),
+        );
+      },
     );
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:netflix_clone/features/home/ui/home_nav_bar_widget.dart';
-import 'package:netflix_clone/features/home/ui/screens/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
