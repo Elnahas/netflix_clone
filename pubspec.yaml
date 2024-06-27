@@ -62,6 +62,8 @@ dependencies:
   lottie: ^3.1.2
   # google font
   google_fonts: ^6.2.1
+  # splash screen
+  flutter_native_splash: ^2.4.0
 
 
 
