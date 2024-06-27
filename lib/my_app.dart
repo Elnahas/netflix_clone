@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'features/splash/ui/splash_screen.dart';
+import 'package:netflix_clone/core/routing/app_router.dart';
+import 'package:netflix_clone/core/routing/routes.dart';
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final AppRouter appRouter;
+  const MyApp({super.key, required this.appRouter});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,9 @@ class MyApp extends StatelessWidget {
             useMaterial3: true,
             fontFamily: GoogleFonts.ptSans().fontFamily,
           ),
-          home: const SplashScreen(),
+          // home: const SplashScreen(),
+          initialRoute: Routes.splash,
+          onGenerateRoute: appRouter.onGenerateRoute,
         );
       },
     );
