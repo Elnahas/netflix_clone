@@ -14,9 +14,12 @@ class HomeScreen extends StatelessWidget {
           'assets/icons/logo.png',
           height: 50.h,
           width: 120.w,
+          
         ),
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.search , size: 30,)),
+
+        horizontalSpace(5),
 
           CircleAvatar(
             radius: 20.r,
