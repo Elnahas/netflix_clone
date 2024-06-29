@@ -44,7 +44,7 @@ MoviesModel _$MoviesModelFromJson(Map<String, dynamic> json) => MoviesModel(
           .toList(),
       id: (json['id'] as num).toInt(),
       originalLanguage:
-          $enumDecode(_$OriginalLanguageEnumMap, json['original_language']),
+          parseOriginalLanguage(json['original_language'] as String),
       originalTitle: json['original_title'] as String,
       overview: json['overview'] as String,
       popularity: (json['popularity'] as num).toDouble(),

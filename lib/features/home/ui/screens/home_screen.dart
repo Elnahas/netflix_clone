@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:netflix_clone/core/helpers/spacing.dart';
+import 'package:netflix_clone/features/home/logic/cubit/home_cubit.dart';
+import 'package:netflix_clone/features/home/logic/cubit/home_state.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -14,21 +17,50 @@ class HomeScreen extends StatelessWidget {
           'assets/icons/logo.png',
           height: 50.h,
           width: 120.w,
-          
         ),
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.search , size: 30,)),
-
-        horizontalSpace(5),
-
+          IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.search,
+                size: 30,
+              )),
+          horizontalSpace(5),
           CircleAvatar(
             radius: 20.r,
             backgroundImage: const NetworkImage(
                 'https://media.licdn.com/dms/image/D4D03AQFmicEnnQAowg/profile-displayphoto-shrink_800_800/0/1719037982898?e=1724889600&v=beta&t=_4cazPwgUc51_HgWwWFxaeglKEDNJGhks59D_WZWHzA'),
           ),
           horizontalSpace(15)
-          
         ],
+      ),
+      body: BlocBuilder<HomeCubit, HomeState>(
+        builder: (context, state) {
+          if (state is UpcomingMoviesLoading) {
+
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+
+          } else if (state is UpcomingMoviesSuccess) {
+
+            return Expanded(
+              child: ListView.builder(
+                itemCount: state.movies.length,
+                itemBuilder: (context, index) {
+                  return Text(state.movies[index].title);
+                },
+              ),
+            );
+            
+          }
+            else if (state is UpcomingMoviesFailure) {
+
+              return Text(state.error);
+              
+            }
+          return const SizedBox.shrink();
+        },
       ),
     );
   }

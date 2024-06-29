@@ -47,7 +47,7 @@ class MoviesModel {
   @JsonKey(name: 'genre_ids')
   final List<int> genreIds;
   final int id;
-  @JsonKey(name: 'original_language')
+  @JsonKey(name: 'original_language', fromJson: parseOriginalLanguage)
   final OriginalLanguage originalLanguage;
   @JsonKey(name: 'original_title')
   final String originalTitle;
@@ -91,20 +91,15 @@ enum OriginalLanguage {
   ZH,
 }
 
-class EnumValues<T> {
-  final Map<String, T> map;
-  late Map<T, String> reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    reverseMap = map.map((k, v) => MapEntry(v, k));
-    return reverseMap;
+OriginalLanguage parseOriginalLanguage(String language) {
+  switch (language.toLowerCase()) {
+    case 'en':
+      return OriginalLanguage.EN;
+    case 'es':
+      return OriginalLanguage.ES;
+    case 'zh':
+      return OriginalLanguage.ZH;
+    default:
+      throw ArgumentError('Invalid language: $language');
   }
 }
-
-final originalLanguageValues = EnumValues({
-  "en": OriginalLanguage.EN,
-  "es": OriginalLanguage.ES,
-  "zh": OriginalLanguage.ZH,
-});
