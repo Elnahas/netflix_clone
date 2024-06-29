@@ -16,4 +16,8 @@ abstract class ApiService{
   Future<MoviesResponse> getNowPlayingMovies(
   );
 
+    @GET(ApiConstants.popularMovie)
+  Future<MoviesResponse> getPopularMovie(
+  );
+
 }

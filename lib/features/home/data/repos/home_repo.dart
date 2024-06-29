@@ -8,6 +8,17 @@ class HomeRepo {
 
   HomeRepo(this._apiService);
 
+    Future<ApiResult<MoviesResponse>> getPopularMovie() async {
+    try {
+      final response = await _apiService.getPopularMovie();
+      return Success(response);
+    } catch (e) {
+      final errorHandler = ErrorHandler.handle(e.toString());
+
+      return Failure(errorHandler);
+    }
+  }
+
   Future<ApiResult<MoviesResponse>> getUpcomingMovies() async {
     try {
       final response = await _apiService.getUpcomingMovies();

@@ -3,9 +3,10 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 class ApiConstants {
   static final String userToken = dotenv.get("API_TOKEN", fallback: "");
   static const String apiBaseUrl = "https://api.themoviedb.org/3/";
-    static const String imgBaseUrl = "https://image.tmdb.org/t/p/w500/";
+    static const String baseImageUrl = "https://image.tmdb.org/t/p/w500/";
 
   static const String movieUpcoming = "movie/upcoming";
+  static const String popularMovie = "movie/popular";
   static const String nowPlaying = "movie/now_playing";
 }
 

@@ -62,6 +62,7 @@ dependencies:
   # splash screen
   flutter_native_splash: ^2.4.0
   flutter_dotenv: ^5.1.0
+  carousel_slider: ^4.2.1
 
 
 

@@ -7,6 +7,22 @@ class HomeCubit extends Cubit<HomeState> {
   final HomeRepo _homeRepo;
   HomeCubit(this._homeRepo) : super(const Initial());
 
+  Future<void> getPopularMovies() async {
+    emit(const PopularMoviesLoading());
+
+    final result = await _homeRepo.getPopularMovie();
+
+    switch (result) {
+      case Success(:final data):
+        emit(PopularMoviesSuccess(data.moviesList));
+        break;
+
+      case Failure(:final errorHandler):
+        emit(PopularMoviesFailure(errorHandler.apiErrorModel.message.toString()));
+        break;
+    }
+  }
+
   Future<void> getUpcomingMovies() async {
     emit(const UpcomingMoviesLoading());
 

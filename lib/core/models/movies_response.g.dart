@@ -8,7 +8,6 @@ part of 'movies_response.dart';
 
 MoviesResponse _$MoviesResponseFromJson(Map<String, dynamic> json) =>
     MoviesResponse(
-      dates: Dates.fromJson(json['dates'] as Map<String, dynamic>),
       page: (json['page'] as num).toInt(),
       moviesList: (json['results'] as List<dynamic>)
           .map((e) => MoviesModel.fromJson(e as Map<String, dynamic>))
@@ -19,7 +18,6 @@ MoviesResponse _$MoviesResponseFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$MoviesResponseToJson(MoviesResponse instance) =>
     <String, dynamic>{
-      'dates': instance.dates,
       'page': instance.page,
       'results': instance.moviesList,
       'total_pages': instance.totalPages,
@@ -43,8 +41,7 @@ MoviesModel _$MoviesModelFromJson(Map<String, dynamic> json) => MoviesModel(
           .map((e) => (e as num).toInt())
           .toList(),
       id: (json['id'] as num).toInt(),
-      originalLanguage:
-          parseOriginalLanguage(json['original_language'] as String),
+      originalLanguage: json['original_language'] as String,
       originalTitle: json['original_title'] as String,
       overview: json['overview'] as String,
       popularity: (json['popularity'] as num).toDouble(),
@@ -62,8 +59,7 @@ Map<String, dynamic> _$MoviesModelToJson(MoviesModel instance) =>
       'backdrop_path': instance.backdropPath,
       'genre_ids': instance.genreIds,
       'id': instance.id,
-      'original_language':
-          _$OriginalLanguageEnumMap[instance.originalLanguage]!,
+      'original_language': instance.originalLanguage,
       'original_title': instance.originalTitle,
       'overview': instance.overview,
       'popularity': instance.popularity,
@@ -74,9 +70,3 @@ Map<String, dynamic> _$MoviesModelToJson(MoviesModel instance) =>
       'vote_average': instance.voteAverage,
       'vote_count': instance.voteCount,
     };
-
-const _$OriginalLanguageEnumMap = {
-  OriginalLanguage.EN: 'EN',
-  OriginalLanguage.ES: 'ES',
-  OriginalLanguage.ZH: 'ZH',
-};

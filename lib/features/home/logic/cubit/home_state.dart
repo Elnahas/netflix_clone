@@ -9,6 +9,20 @@ class Initial extends HomeState {
   const Initial();
 }
 
+//PopularMovies
+class PopularMoviesLoading extends HomeState {
+  const PopularMoviesLoading();
+}
+
+class PopularMoviesSuccess extends HomeState {
+  final List<MoviesModel> movies;
+  const PopularMoviesSuccess(this.movies);
+}
+
+class PopularMoviesFailure extends HomeState {
+  final String error;
+  const PopularMoviesFailure(this.error);
+}
 
 //UpcomingMovies
 
