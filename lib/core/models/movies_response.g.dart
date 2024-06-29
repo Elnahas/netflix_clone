@@ -1,26 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'movie_model.dart';
+part of 'movies_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-MovieModel _$MovieModelFromJson(Map<String, dynamic> json) => MovieModel(
+MoviesResponse _$MoviesResponseFromJson(Map<String, dynamic> json) =>
+    MoviesResponse(
       dates: Dates.fromJson(json['dates'] as Map<String, dynamic>),
       page: (json['page'] as num).toInt(),
-      results: (json['results'] as List<dynamic>)
-          .map((e) => Result.fromJson(e as Map<String, dynamic>))
+      moviesList: (json['results'] as List<dynamic>)
+          .map((e) => MoviesModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       totalPages: (json['total_pages'] as num).toInt(),
       totalResults: (json['total_results'] as num).toInt(),
     );
 
-Map<String, dynamic> _$MovieModelToJson(MovieModel instance) =>
+Map<String, dynamic> _$MoviesResponseToJson(MoviesResponse instance) =>
     <String, dynamic>{
       'dates': instance.dates,
       'page': instance.page,
-      'results': instance.results,
+      'results': instance.moviesList,
       'total_pages': instance.totalPages,
       'total_results': instance.totalResults,
     };
@@ -35,7 +36,7 @@ Map<String, dynamic> _$DatesToJson(Dates instance) => <String, dynamic>{
       'minimum': instance.minimum.toIso8601String(),
     };
 
-Result _$ResultFromJson(Map<String, dynamic> json) => Result(
+MoviesModel _$MoviesModelFromJson(Map<String, dynamic> json) => MoviesModel(
       adult: json['adult'] as bool,
       backdropPath: json['backdrop_path'] as String,
       genreIds: (json['genre_ids'] as List<dynamic>)
@@ -55,7 +56,8 @@ Result _$ResultFromJson(Map<String, dynamic> json) => Result(
       voteCount: (json['vote_count'] as num).toInt(),
     );
 
-Map<String, dynamic> _$ResultToJson(Result instance) => <String, dynamic>{
+Map<String, dynamic> _$MoviesModelToJson(MoviesModel instance) =>
+    <String, dynamic>{
       'adult': instance.adult,
       'backdrop_path': instance.backdropPath,
       'genre_ids': instance.genreIds,

@@ -1,27 +1,28 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'movie_model.g.dart';
+part 'movies_response.g.dart';
 
 @JsonSerializable()
-class MovieModel {
+class MoviesResponse {
   final Dates dates;
   final int page;
-  final List<Result> results;
+  @JsonKey(name: 'results')
+  final List<MoviesModel> moviesList;
   @JsonKey(name: 'total_pages')
   final int totalPages;
   @JsonKey(name: 'total_results')
   final int totalResults;
 
-  MovieModel({
+  MoviesResponse({
     required this.dates,
     required this.page,
-    required this.results,
+    required this.moviesList,
     required this.totalPages,
     required this.totalResults,
   });
 
-  factory MovieModel.fromJson(Map<String, dynamic> json) => _$MovieModelFromJson(json);
-  Map<String, dynamic> toJson() => _$MovieModelToJson(this);
+  factory MoviesResponse.fromJson(Map<String, dynamic> json) => _$MoviesResponseFromJson(json);
+  Map<String, dynamic> toJson() => _$MoviesResponseToJson(this);
 }
 
 @JsonSerializable()
@@ -39,7 +40,7 @@ class Dates {
 }
 
 @JsonSerializable()
-class Result {
+class MoviesModel {
   final bool adult;
   @JsonKey(name: 'backdrop_path')
   final String backdropPath;
@@ -63,7 +64,7 @@ class Result {
   @JsonKey(name: 'vote_count')
   final int voteCount;
 
-  Result({
+  MoviesModel({
     required this.adult,
     required this.backdropPath,
     required this.genreIds,
@@ -80,8 +81,8 @@ class Result {
     required this.voteCount,
   });
 
-  factory Result.fromJson(Map<String, dynamic> json) => _$ResultFromJson(json);
-  Map<String, dynamic> toJson() => _$ResultToJson(this);
+  factory MoviesModel.fromJson(Map<String, dynamic> json) => _$MoviesModelFromJson(json);
+  Map<String, dynamic> toJson() => _$MoviesModelToJson(this);
 }
 
 enum OriginalLanguage {
