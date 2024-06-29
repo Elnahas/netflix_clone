@@ -38,7 +38,7 @@ class HomeNavBarWidget extends StatelessWidget {
         ),
         body:  TabBarView(children: [
           BlocProvider(
-            create: (context) => HomeCubit(getIt())..getUpcomingMovies(),
+            create: (context) => HomeCubit(getIt())..getNowPlayingMovies(),
             child: const HomeScreen(),
           ),
           const SearchScreen(),

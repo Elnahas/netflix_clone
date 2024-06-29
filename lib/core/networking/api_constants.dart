@@ -6,6 +6,7 @@ class ApiConstants {
     static const String imgBaseUrl = "https://image.tmdb.org/t/p/w500/";
 
   static const String movieUpcoming = "movie/upcoming";
+  static const String nowPlaying = "movie/now_playing";
 }
 
 class ApiErrors {

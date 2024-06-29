@@ -21,7 +21,7 @@ class _ApiService implements ApiService {
   String? baseUrl;
 
   @override
-  Future<MoviesResponse> getMovieUpcoming() async {
+  Future<MoviesResponse> getUpcomingMovies() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -35,6 +35,33 @@ class _ApiService implements ApiService {
             .compose(
               _dio.options,
               'movie/upcoming',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = MoviesResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<MoviesResponse> getNowPlayingMovies() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<MoviesResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'movie/now_playing',
               queryParameters: queryParameters,
               data: _data,
             )

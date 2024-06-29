@@ -22,4 +22,21 @@ class HomeCubit extends Cubit<HomeState> {
         break;
     }
   }
+
+
+    Future<void> getNowPlayingMovies() async {
+    emit(const NowPlayingMoviesLoading());
+
+    final result = await _homeRepo.getNowPlayingMovies();
+
+    switch (result) {
+      case Success(:final data):
+        emit(NowPlayingMoviesSuccess(data.moviesList));
+        break;
+
+      case Failure(:final errorHandler):
+        emit(NowPlayingMoviesFailure(errorHandler.apiErrorModel.message.toString()));
+        break;
+    }
+  }
 }
