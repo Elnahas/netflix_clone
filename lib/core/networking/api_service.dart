@@ -10,7 +10,7 @@ abstract class ApiService{
   factory ApiService(Dio dio , {String baseUrl}) = _ApiService;
 
   @GET(ApiConstants.movieUpcoming)
-  Future<MovieModel> movieUpcoming(
+  Future<MovieModel> getMovieUpcoming(
   );
 
 }

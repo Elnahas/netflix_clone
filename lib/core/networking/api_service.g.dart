@@ -13,7 +13,7 @@ class _ApiService implements ApiService {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://image.tmdb.org/t/p/w500/';
+    baseUrl ??= 'https://api.themoviedb.org/3/';
   }
 
   final Dio _dio;
@@ -21,7 +21,7 @@ class _ApiService implements ApiService {
   String? baseUrl;
 
   @override
-  Future<MovieModel> movieUpcoming() async {
+  Future<MovieModel> getMovieUpcoming() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
