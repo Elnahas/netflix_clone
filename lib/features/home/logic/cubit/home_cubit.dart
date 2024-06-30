@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:netflix_clone/core/networking/api_result.dart';
 import 'package:netflix_clone/features/home/data/repos/home_repo.dart';
@@ -6,6 +7,7 @@ import 'package:netflix_clone/features/home/logic/cubit/home_state.dart';
 class HomeCubit extends Cubit<HomeState> {
   final HomeRepo _homeRepo;
   HomeCubit(this._homeRepo) : super(const Initial());
+  CarouselController carouselController = CarouselController();
 
   Future<void> getPopularMovies() async {
     emit(const PopularMoviesLoading());

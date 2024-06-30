@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:netflix_clone/core/routing/app_router.dart';
 import 'package:netflix_clone/core/routing/routes.dart';
+import 'package:netflix_clone/core/theming/app_colors.dart';
 
 class MyApp extends StatelessWidget {
   final AppRouter appRouter;
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
               seedColor: Colors.deepPurple,
               brightness: Brightness.dark,  
             ),
-            scaffoldBackgroundColor: Colors.black,
+            scaffoldBackgroundColor: AppColors.primaryColor,
             useMaterial3: true,
             fontFamily: GoogleFonts.ptSans().fontFamily,
           ),

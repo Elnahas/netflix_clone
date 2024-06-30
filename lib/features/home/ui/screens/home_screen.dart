@@ -1,12 +1,13 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:netflix_clone/core/helpers/spacing.dart';
-import 'package:netflix_clone/core/models/movies_response.dart';
+import 'package:netflix_clone/core/theming/app_colors.dart';
 import 'package:netflix_clone/features/home/logic/cubit/home_cubit.dart';
 import 'package:netflix_clone/features/home/logic/cubit/home_state.dart';
-import 'package:netflix_clone/features/home/ui/widgets/slide_items.dart';
+import 'package:netflix_clone/features/home/ui/widgets/slider_and_indicator_section.dart';
+
+import '../../../../core/helpers/constants.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -15,7 +16,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.black,
+          backgroundColor: AppColors.primaryColor,
           title: Image.asset(
             'assets/icons/logo.png',
             height: 50.h,
@@ -30,9 +31,10 @@ class HomeScreen extends StatelessWidget {
                 )),
             horizontalSpace(5),
             CircleAvatar(
-              radius: 20.r,
+              radius: 18.r,
               backgroundImage: const NetworkImage(
-                  'https://media.licdn.com/dms/image/D4D03AQFmicEnnQAowg/profile-displayphoto-shrink_800_800/0/1719037982898?e=1724889600&v=beta&t=_4cazPwgUc51_HgWwWFxaeglKEDNJGhks59D_WZWHzA'),
+                  Constants.profileUrl),
+                  backgroundColor: Colors.white,
             ),
             horizontalSpace(15)
           ],
@@ -51,7 +53,7 @@ class HomeScreen extends StatelessWidget {
                       child: CircularProgressIndicator(),
                     );
                   } else if (state is PopularMoviesSuccess) {
-                    return _buildCarouselSlider(state.movies);
+                    return SliderAndIndicatorSection(list: state.movies.sublist(0, 5));
                     
                   } else if (state is PopularMoviesFailure) {
                     return Text(state.error);
@@ -63,32 +65,6 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
         ));
-  }
-
-  
-  _buildCarouselSlider(List<MoviesModel> list) {
-    return CarouselSlider(
-      items: list.sublist(0, 5).map(
-        (item) {
-          return SlideItems(
-            avatar: item.backdropPath,
-            title: item.title,
-          );
-        },
-      ).toList(),
-      options: CarouselOptions(
-        autoPlay: true,
-        viewportFraction: 1,
-        enlargeCenterPage: false,
-        onPageChanged: (index, reason) {
-          // setState(
-          //   () {
-          //     _current = index;
-          //   },
-          // );
-        },
-      ),
-    );
   }
 
   
