@@ -10,9 +10,8 @@ class HomeCubit extends Cubit<HomeState> {
 
   CarouselController carouselController = CarouselController();
 
-
-
   Future<void> getPopularMovies() async {
+
     emit(const PopularMoviesLoading());
 
     final result = await _homeRepo.getPopularMovie();
@@ -63,8 +62,7 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
 
-
-    Future<void> getMovieList(int genreId) async {
+  Future<void> getMovieList(int genreId) async {
     emit(const MoviesListLoading());
 
     final result = await _homeRepo.getMovieList(genreId);
@@ -75,8 +73,7 @@ class HomeCubit extends Cubit<HomeState> {
         break;
 
       case Failure(:final errorHandler):
-        emit(MoviesListFailure(
-            errorHandler.apiErrorModel.message.toString()));
+        emit(MoviesListFailure(errorHandler.apiErrorModel.message.toString()));
         break;
     }
   }
