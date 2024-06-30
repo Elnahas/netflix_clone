@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen>
     _controller = AnimationController(vsync: this);
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        context.pushReplacementNamed(Routes.homeNavBar);
+        context.pushReplacementNamed(Routes.home);
       }
     });
   }

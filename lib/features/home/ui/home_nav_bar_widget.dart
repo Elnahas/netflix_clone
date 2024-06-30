@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflix_clone/core/di/service_locator.dart';
+import 'package:netflix_clone/features/home/logic/cubit/home_cubit.dart';
 import 'package:netflix_clone/features/home/ui/screens/home_screen.dart';
+import 'package:netflix_clone/features/new_hot/ui/screens/new_hot_screen.dart';
+import 'package:netflix_clone/features/search/ui/screens/search_screen.dart';
 
 class HomeNavBarWidget extends StatelessWidget {
   const HomeNavBarWidget({super.key});
@@ -31,10 +36,13 @@ class HomeNavBarWidget extends StatelessWidget {
             ],
           ),
         ),
-        body: const TabBarView(children: [
-          HomeScreen(),
-          HomeScreen(),
-          HomeScreen(),
+        body:  TabBarView(children: [
+          BlocProvider(
+            create: (context) => HomeCubit(getIt())..getNowPlayingMovies(),
+            child: const HomeScreen(),
+          ),
+          const SearchScreen(),
+          const NewHotScreen(),
         ]),
       ),
     );
