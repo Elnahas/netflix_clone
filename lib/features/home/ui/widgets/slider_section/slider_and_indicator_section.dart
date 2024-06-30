@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:netflix_clone/core/models/movies_response.dart';
 import 'package:netflix_clone/features/home/logic/cubit/home_cubit.dart';
-import 'package:netflix_clone/features/home/ui/widgets/slide_items.dart';
+import 'package:netflix_clone/features/home/ui/widgets/slider_section/slide_items.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import '../../../../core/theming/app_colors.dart';
+import '../../../../../core/theming/app_colors.dart';
 
 class SliderAndIndicatorSection extends StatefulWidget {
   final List<MoviesModel> list;
