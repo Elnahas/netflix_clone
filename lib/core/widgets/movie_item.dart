@@ -3,6 +3,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:netflix_clone/core/helpers/extensions.dart';
 import 'package:netflix_clone/core/networking/api_constants.dart';
+import 'package:netflix_clone/core/theming/app_text_styles.dart';
 
 import 'app_image_clip_r_rect.dart';
 
@@ -71,12 +72,7 @@ class MovieItem extends StatelessWidget {
                 title,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 13.0,
-                  color: Colors.white,
-                  height: 1.3,
-                ),
+                style: AppTextStyles.font14WhiteBold.copyWith(height: 1.3) 
               ),
             ),
             Padding(
@@ -88,11 +84,7 @@ class MovieItem extends StatelessWidget {
                       children: [
                         Text(
                           rating!.formatDouble().toString(),
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 10.0,
-                            color: Colors.white,
-                          ),
+                          style: AppTextStyles.font10WhiteBold,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(

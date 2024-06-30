@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/core/networking/api_constants.dart';
+import 'package:netflix_clone/core/theming/app_text_styles.dart';
 
 class SlideItems extends StatelessWidget {
   final String avatar;
@@ -63,11 +64,7 @@ class SlideItems extends StatelessWidget {
           left: 10.0,
           child: Text(
             title,
-            style: const TextStyle(
-              fontSize: 18.0,
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-            ),
+            style: AppTextStyles.font18WhiteBold,
           ),
         )
         
