@@ -20,4 +20,14 @@ abstract class ApiService{
   Future<MoviesResponse> getPopularMovie(
   );
 
+  @GET(ApiConstants.discoverMovieList)
+  Future<MoviesResponse> getMovieList(
+    {@Query('language') String language = "en-US",
+    @Query('sort_by') String sortBy = "popularity.desc",
+    @Query('include_adult') bool includeAdult = false,
+    @Query('include_video') bool includeVideo = false,
+    @Query('page') int page = 1,
+    @Query('with_genres') int genreId = 28}
+  );
+
 }

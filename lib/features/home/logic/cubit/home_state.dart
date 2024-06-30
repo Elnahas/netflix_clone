@@ -55,3 +55,20 @@ class NowPlayingMoviesFailure extends HomeState {
   final String error;
   const NowPlayingMoviesFailure(this.error);
 }
+
+
+//Movie List
+
+class MoviesListLoading extends HomeState {
+  const MoviesListLoading();
+}
+
+class MoviesListSuccess extends HomeState {
+  final List<MoviesModel> movies;
+  const MoviesListSuccess(this.movies);
+}
+
+class MoviesListFailure extends HomeState {
+  final String error;
+  const MoviesListFailure(this.error);
+}

@@ -15,7 +15,7 @@ class AppRouter {
       case Routes.home:
         return MaterialPageRoute(
             builder: (context) => BlocProvider(
-                  create: (context) => HomeCubit(getIt())..getPopularMovies(),
+                  create: (context) => HomeCubit(getIt())..getPopularMovies()..getMovieList(28),
                   child: const HomeScreen(),
                 ));
       case Routes.homeNavBar:

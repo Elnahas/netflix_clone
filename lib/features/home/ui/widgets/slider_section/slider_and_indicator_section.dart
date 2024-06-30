@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:netflix_clone/core/models/movies_response.dart';
 import 'package:netflix_clone/features/home/logic/cubit/home_cubit.dart';
 import 'package:netflix_clone/features/home/ui/widgets/slider_section/slide_items.dart';
@@ -59,7 +60,7 @@ class _SliderAndIndicatorSectionState extends State<SliderAndIndicatorSection> {
       Positioned(
         left: 0,
         right: 0,
-        bottom: 5,
+        bottom: 5.h,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

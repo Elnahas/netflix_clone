@@ -18,3 +18,8 @@ extension Navigation on BuildContext {
 
   void pop() => Navigator.of(this).pop();
 }
+
+
+extension DoubleExtension on double {
+  double  formatDouble() => ((this * 2).round() / 2);
+}

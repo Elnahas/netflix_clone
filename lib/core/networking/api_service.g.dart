@@ -101,6 +101,47 @@ class _ApiService implements ApiService {
     return value;
   }
 
+  @override
+  Future<MoviesResponse> getMovieList({
+    String language = "en-US",
+    String sortBy = "popularity.desc",
+    bool includeAdult = false,
+    bool includeVideo = false,
+    int page = 1,
+    int genreId = 28,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'language': language,
+      r'sort_by': sortBy,
+      r'include_adult': includeAdult,
+      r'include_video': includeVideo,
+      r'page': page,
+      r'with_genres': genreId,
+    };
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<MoviesResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'discover/movie',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = MoviesResponse.fromJson(_result.data!);
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||

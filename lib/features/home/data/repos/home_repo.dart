@@ -41,4 +41,15 @@ class HomeRepo {
       return Failure(errorHandler);
     }
   }
+
+      Future<ApiResult<MoviesResponse>> getMovieList(int genreId) async {
+    try {
+      final response = await _apiService.getMovieList(genreId: genreId);
+      return Success(response);
+    } catch (e) {
+      final errorHandler = ErrorHandler.handle(e.toString());
+
+      return Failure(errorHandler);
+    }
+  }
 }
