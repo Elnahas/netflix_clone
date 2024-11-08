@@ -36,21 +36,24 @@ Map<String, dynamic> _$DatesToJson(Dates instance) => <String, dynamic>{
 
 MoviesModel _$MoviesModelFromJson(Map<String, dynamic> json) => MoviesModel(
       adult: json['adult'] as bool,
-      backdropPath: json['backdrop_path'] as String,
-      genreIds: (json['genre_ids'] as List<dynamic>)
-          .map((e) => (e as num).toInt())
-          .toList(),
+      backdropPath: json['backdrop_path'] as String? ?? '',
+      genreIds: (json['genre_ids'] as List<dynamic>?)
+              ?.map((e) => (e as num).toInt())
+              .toList() ??
+          [],
       id: (json['id'] as num).toInt(),
-      originalLanguage: json['original_language'] as String,
-      originalTitle: json['original_title'] as String,
-      overview: json['overview'] as String,
-      popularity: (json['popularity'] as num).toDouble(),
-      posterPath: json['poster_path'] as String,
-      releaseDate: DateTime.parse(json['release_date'] as String),
-      title: json['title'] as String,
-      video: json['video'] as bool,
-      voteAverage: (json['vote_average'] as num).toDouble(),
-      voteCount: (json['vote_count'] as num).toInt(),
+      originalLanguage: json['original_language'] as String? ?? 'unknown',
+      originalTitle: json['original_title'] as String? ?? 'unknown',
+      overview: json['overview'] as String? ?? '',
+      popularity: (json['popularity'] as num?)?.toDouble() ?? 0.0,
+      posterPath: json['poster_path'] as String? ?? '',
+      releaseDate: json['release_date'] == null
+          ? null
+          : DateTime.parse(json['release_date'] as String),
+      title: json['title'] as String? ?? 'unknown',
+      video: json['video'] as bool? ?? false,
+      voteAverage: (json['vote_average'] as num?)?.toDouble() ?? 0.0,
+      voteCount: (json['vote_count'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$MoviesModelToJson(MoviesModel instance) =>
@@ -64,7 +67,7 @@ Map<String, dynamic> _$MoviesModelToJson(MoviesModel instance) =>
       'overview': instance.overview,
       'popularity': instance.popularity,
       'poster_path': instance.posterPath,
-      'release_date': instance.releaseDate.toIso8601String(),
+      'release_date': instance.releaseDate?.toIso8601String(),
       'title': instance.title,
       'video': instance.video,
       'vote_average': instance.voteAverage,

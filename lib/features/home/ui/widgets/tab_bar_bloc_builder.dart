@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:netflix_clone/features/home/logic/cubit/home_cubit.dart';
+import 'package:netflix_clone/features/home/logic/bloc/home_bloc.dart';
 import 'package:netflix_clone/features/home/ui/widgets/tab_bar_view_widget.dart';
-
-import '../../logic/cubit/home_state.dart';
 
 class TabBarBlocBuilder extends StatelessWidget {
   final TabController tabController;
@@ -11,7 +9,7 @@ class TabBarBlocBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  BlocBuilder<HomeCubit, HomeState>(
+    return  BlocBuilder<HomeBloc, HomeState>(
                 builder: (context, state) {
                   if (state is MoviesListLoading) {
                     return  SizedBox(
@@ -31,7 +29,6 @@ class TabBarBlocBuilder extends StatelessWidget {
                     return TabBarViewWidget(moviesList: state.movies ,tabController:  tabController);
                   } else if (state is MoviesListFailure) {
                     return Text(state.error);
-                    
                   }
                   return const SizedBox.shrink();
                 },
