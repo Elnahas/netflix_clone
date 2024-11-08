@@ -44,11 +44,9 @@ class HomeRepo {
 
       Future<ApiResult<MoviesResponse>> getMovieList(int genreId) async {
     try {
-      print("GENRE ID : *-*-*-*- $genreId");
       final response = await _apiService.getMovieList(genreId: genreId);
       return Success(response);
     } catch (e) {
-      print("ERRRRRRRRORRR : *-*-*-*- ${e.toString()}");
       final errorHandler = ErrorHandler.handle(e.toString());
 
       return Failure(errorHandler);

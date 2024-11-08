@@ -19,6 +19,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<GetMoviesList>(_onGetMoviesList);
   }
 
+  //this show popular movies in home screen at slider
   Future<void> _onGetPopularMovies(GetPopularMovies event, Emitter<HomeState> emit) async {
     emit(const PopularMoviesLoading());
 
@@ -36,7 +37,29 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     }
   }
 
-  Future<void> _onGetUpcomingMovies(GetUpcomingMovies event, Emitter<HomeState> emit) async {
+
+
+  // this method take genreId as parameter from tab and get list of movies
+  Future<void> _onGetMoviesList(GetMoviesList event, Emitter<HomeState> emit) async {
+    emit(const MoviesListLoading());
+
+    final result = await _homeRepo.getMovieList(event.genreId);
+
+    switch (result) {
+      case Success(:final data):
+        emit(MoviesListSuccess(data.moviesList));
+        break;
+
+      case Failure(:final errorHandler):
+        emit(MoviesListFailure(
+            errorHandler.apiErrorModel.message.toString()));
+        break;
+    }
+  }
+
+
+
+    Future<void> _onGetUpcomingMovies(GetUpcomingMovies event, Emitter<HomeState> emit) async {
     emit(const UpcomingMoviesLoading());
 
     final result = await _homeRepo.getUpcomingMovies();
@@ -53,6 +76,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     }
   }
 
+
+  
   Future<void> _onGetNowPlayingMovies(GetNowPlayingMovies event, Emitter<HomeState> emit) async {
     emit(const NowPlayingMoviesLoading());
 
@@ -71,20 +96,4 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
 
-  Future<void> _onGetMoviesList(GetMoviesList event, Emitter<HomeState> emit) async {
-    emit(const MoviesListLoading());
-
-    final result = await _homeRepo.getMovieList(event.genreId);
-
-    switch (result) {
-      case Success(:final data):
-        emit(MoviesListSuccess(data.moviesList));
-        break;
-
-      case Failure(:final errorHandler):
-        emit(MoviesListFailure(
-            errorHandler.apiErrorModel.message.toString()));
-        break;
-    }
-  }
 }
