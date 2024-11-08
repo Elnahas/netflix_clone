@@ -39,28 +39,32 @@ class Dates {
 
 @JsonSerializable()
 class MoviesModel {
-    bool adult;
-    @JsonKey(name: 'backdrop_path')
-    String backdropPath;
-    @JsonKey(name: 'genre_ids')
-    List<int> genreIds;
-    int id;
-    @JsonKey(name: 'original_language')
-    String originalLanguage;
-    @JsonKey(name: 'original_title')
-    String originalTitle;
-    String overview;
-    double popularity;
-    @JsonKey(name: 'poster_path')
-    String posterPath;
-    @JsonKey(name: 'release_date')
-    DateTime releaseDate;
-    String title;
-    bool video;
-    @JsonKey(name: 'vote_average')
-    double voteAverage;
-    @JsonKey(name: 'vote_count')
-    int voteCount;
+  bool adult;
+  @JsonKey(name: 'backdrop_path', defaultValue: '')
+  String backdropPath;
+  @JsonKey(name: 'genre_ids', defaultValue: [])
+  List<int> genreIds;
+  int id;
+  @JsonKey(name: 'original_language', defaultValue: 'unknown') 
+  String originalLanguage;
+  @JsonKey(name: 'original_title', defaultValue: 'unknown')
+  String originalTitle;
+  @JsonKey(defaultValue: '') 
+  String overview;
+  @JsonKey(defaultValue: 0.0) 
+  double popularity;
+  @JsonKey(name: 'poster_path', defaultValue: '') 
+  String posterPath;
+  @JsonKey(name: 'release_date', nullable: true) 
+  DateTime? releaseDate; 
+  @JsonKey(defaultValue: 'unknown') 
+  String title;
+  @JsonKey(defaultValue: false) 
+  bool video;
+  @JsonKey(name: 'vote_average', defaultValue: 0.0)
+  double voteAverage;
+  @JsonKey(name: 'vote_count', defaultValue: 0) 
+  int voteCount;
 
   MoviesModel({
     required this.adult,
@@ -72,7 +76,7 @@ class MoviesModel {
     required this.overview,
     required this.popularity,
     required this.posterPath,
-    required this.releaseDate,
+    this.releaseDate, 
     required this.title,
     required this.video,
     required this.voteAverage,

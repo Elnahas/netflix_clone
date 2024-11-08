@@ -1,18 +1,25 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:netflix_clone/core/networking/api_result.dart';
-import 'package:netflix_clone/features/home/data/repos/home_repo.dart';
-import 'package:netflix_clone/features/home/logic/cubit/home_state.dart';
+import 'package:equatable/equatable.dart';
 
+import '../../../../core/models/movies_response.dart';
+import '../../../../core/networking/api_result.dart';
+import '../../data/repos/home_repo.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+part 'home_event.dart';
+part 'home_state.dart';
 
-class HomeCubit extends Cubit<HomeState> {
+class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final HomeRepo _homeRepo;
-  HomeCubit(this._homeRepo) : super(const Initial());
-
   CarouselSliderController carouselController = CarouselSliderController();
 
-  Future<void> getPopularMovies() async {
+  HomeBloc(this._homeRepo) : super( HomeInitial()) {
+    on<GetPopularMovies>(_onGetPopularMovies);
+    on<GetUpcomingMovies>(_onGetUpcomingMovies);
+    on<GetNowPlayingMovies>(_onGetNowPlayingMovies);
+    on<GetMoviesList>(_onGetMoviesList);
+  }
 
+  Future<void> _onGetPopularMovies(GetPopularMovies event, Emitter<HomeState> emit) async {
     emit(const PopularMoviesLoading());
 
     final result = await _homeRepo.getPopularMovie();
@@ -29,7 +36,7 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
 
-  Future<void> getUpcomingMovies() async {
+  Future<void> _onGetUpcomingMovies(GetUpcomingMovies event, Emitter<HomeState> emit) async {
     emit(const UpcomingMoviesLoading());
 
     final result = await _homeRepo.getUpcomingMovies();
@@ -46,7 +53,7 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
 
-  Future<void> getNowPlayingMovies() async {
+  Future<void> _onGetNowPlayingMovies(GetNowPlayingMovies event, Emitter<HomeState> emit) async {
     emit(const NowPlayingMoviesLoading());
 
     final result = await _homeRepo.getNowPlayingMovies();
@@ -63,10 +70,11 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
 
-  Future<void> getMovieList(int genreId) async {
+
+  Future<void> _onGetMoviesList(GetMoviesList event, Emitter<HomeState> emit) async {
     emit(const MoviesListLoading());
 
-    final result = await _homeRepo.getMovieList(genreId);
+    final result = await _homeRepo.getMovieList(event.genreId);
 
     switch (result) {
       case Success(:final data):
@@ -74,7 +82,8 @@ class HomeCubit extends Cubit<HomeState> {
         break;
 
       case Failure(:final errorHandler):
-        emit(MoviesListFailure(errorHandler.apiErrorModel.message.toString()));
+        emit(MoviesListFailure(
+            errorHandler.apiErrorModel.message.toString()));
         break;
     }
   }

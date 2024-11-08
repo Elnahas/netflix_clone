@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:netflix_clone/features/home/logic/cubit/home_cubit.dart';
-
 import '../../../../core/models/genre_model.dart';
+import '../../logic/bloc/home_bloc.dart';
 
 class TabBarWidget extends StatelessWidget {
   final TabController tabController;
@@ -13,7 +12,8 @@ class TabBarWidget extends StatelessWidget {
     return  TabBar(
       controller: tabController,
       onTap: (index) {
-        context.read<HomeCubit>().getMovieList(genresList[index].id);
+        context.read<HomeBloc>().add(GetMoviesList(genresList[index].id));
+
       },
       labelColor: Colors.white,
       indicatorWeight: 3,

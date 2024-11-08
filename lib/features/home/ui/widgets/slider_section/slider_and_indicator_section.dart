@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:netflix_clone/core/models/movies_response.dart';
+import 'package:netflix_clone/features/home/logic/bloc/home_bloc.dart';
 import 'package:netflix_clone/features/home/logic/cubit/home_cubit.dart';
 import 'package:netflix_clone/features/home/ui/widgets/slider_section/slide_items.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -18,13 +19,13 @@ class SliderAndIndicatorSection extends StatefulWidget {
 }
 
 class _SliderAndIndicatorSectionState extends State<SliderAndIndicatorSection> {
-  late CarouselController carouselController;
+  late CarouselSliderController carouselController;
 
   int currentIndex = 0;
 
   @override
   void initState() {
-    carouselController = context.read<HomeCubit>().carouselController;
+    carouselController = context.read<HomeBloc>().carouselController;
 
     super.initState();
   }
